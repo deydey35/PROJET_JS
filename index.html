@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Météo France</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-panel">
+            <div class="brand">
+                <span class="material-icons-round">cloud</span>
+                <h1>Météo <span class="accent">Analytics</span></h1>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#vue-ensemble" class="nav-item active">
+                    <span class="material-icons-round">dashboard</span> Vue d'ensemble 2023
+                </a>
+                <a href="#comparaison" class="nav-item">
+                    <span class="material-icons-round">bar_chart</span> Comparaison Régionale
+                </a>
+                <a href="#poitiers" class="nav-item">
+                    <span class="material-icons-round">place</span> Focus Poitiers
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Propulsé par <br><strong>OpenDataSoft API</strong></p>
+                <p>Créé avec Plotly</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-info">
+                    <h2>Résumé Climatologique (Données SYNOP)</h2>
+                    <p class="subtitle">Analyse des données météorologiques essentielles françaises</p>
+                </div>
+                <div class="header-actions">
+                    <div class="date-badge" id="current-date">Aujourd'hui</div>
+                </div>
+            </header>
+
+            <div class="bento-grid">
+                <!-- KPIs / Statistiques Rapides -->
+                <div class="bento-item glass-panel kpi-card">
+                    <div class="kpi-icon"><span class="material-icons-round">thermostat</span></div>
+                    <div class="kpi-info">
+                        <h3 id="avg-temp">--°C</h3>
+                        <p>Température Moyenne 2023</p>
+                    </div>
+                </div>
+                
+                <div class="bento-item glass-panel kpi-card">
+                    <div class="kpi-icon"><span class="material-icons-round">water_drop</span></div>
+                    <div class="kpi-info">
+                        <h3 id="avg-rain">-- mm</h3>
+                        <p>Pluie Moy. (par région)</p>
+                    </div>
+                </div>
+
+                <div class="bento-item glass-panel kpi-card">
+                    <div class="kpi-icon"><span class="material-icons-round">location_city</span></div>
+                    <div class="kpi-info">
+                        <h3 id="total-cities">--</h3>
+                        <p>Villes Analysées</p>
+                    </div>
+                </div>
+
+                <div class="bento-item glass-panel kpi-card poitiers-kpi">
+                    <div class="kpi-icon"><span class="material-icons-round">my_location</span></div>
+                    <div class="kpi-info">
+                        <h3>Poitiers</h3>
+                        <p>Données locales (<label id="poitiers-count">--</label> records)</p>
+                    </div>
+                </div>
+
+                <!-- Main Charts -->
+                <div class="bento-item glass-panel chart-container span-2-col" id="vue-ensemble">
+                    <div class="chart-header">
+                        <h3>🌡️ Cartographie des Températures par Ville (2023)</h3>
+                    </div>
+                    <div id="chart-map" class="plot-area"></div>
+                </div>
+
+                <div class="bento-item glass-panel chart-container span-2-col" id="comparaison">
+                    <div class="chart-header">
+                        <h3>📊 Évolution Régionale des Températures & Pluies</h3>
+                    </div>
+                    <div id="chart-region" class="plot-area"></div>
+                </div>
+
+                <div class="bento-item glass-panel chart-container span-2-col mb-4" id="poitiers">
+                    <div class="chart-header">
+                        <h3>📍 Focus : Températures & Précipitations autour de Poitiers (100km)</h3>
+                    </div>
+                    <div id="chart-poitiers" class="plot-area"></div>
+                </div>
+            </div>
+            
+            <footer class="app-footer">
+                <p>Dashboard Météo v1.0 • Design Premium Intégré</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+</html>
